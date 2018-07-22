@@ -31,22 +31,30 @@ if (isProd) {
     }
   )
 }
-
 app.use('/dist', express.static('dist'))
 
 app.get('*', async (req, res) => {
   const context = {
     title: 'SSR Helloworld',
-    url: req.path
+    url: req.url
   }
 
-  isProd && await readyPromise()
+  isProd || await readyPromise
 
-  renderer
+  const response = renderer
   // Renders directly to the response stream.
   // The argument is passed as "context" to main.server.js in the SSR bundle.
     .renderToStream(context)
-    .pipe(res);
+
+  response.on('error', err => {
+    if (err.code === 404) {
+      res.status(404).end('Страница не найдена')
+    } else {
+      res.status(500).end(err.message)
+    }
+  })
+  response.pipe(res)
+
 });
 
 const port = process.env.PORT || 8080

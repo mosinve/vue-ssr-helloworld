@@ -1,6 +1,10 @@
 import { createApp } from './main'
+const { app, router, store } = createApp()
 
-const { app } = createApp()
+if (window.__INITIAL_STATE__) {
+  store.replaceState(window.__INITIAL_STATE__)
+}
 
-// предполагается, что у корневого элемента в шаблоне App.vue есть элемент с `id="app"`
-app.$mount('#app')
+router.onReady(() => {
+  app.$mount('#app')
+})
