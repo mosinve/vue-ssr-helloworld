@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "build:server && build:client",
+    "build": "yarn build:server && yarn build:client",
     "build:server": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.server.config.js",
     "build:client": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.client.config.js",
     "run": "cross-env NODE_ENV=production node server.js"
@@ -38,6 +38,7 @@
     "memory-fs": "^0.4.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
