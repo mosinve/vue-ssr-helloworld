@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "build:server && build:client",
     "build:server": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.server.config.js",
     "build:client": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./config/webpack.client.config.js",
     "run": "cross-env NODE_ENV=production node server.js"

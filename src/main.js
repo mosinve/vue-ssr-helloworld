@@ -17,10 +17,7 @@ Vue.mixin({
         route: this.$route
       })
     }
-  }
-})
-
-Vue.mixin({
+  },
   beforeRouteUpdate (to, from, next) {
     const { asyncData } = this.$options
     if (asyncData) {

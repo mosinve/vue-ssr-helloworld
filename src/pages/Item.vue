@@ -2,9 +2,13 @@
   <div>
     <article v-if='item'>
       <h1>{{ item.attributes.canonicalTitle }}</h1>
-      <img :src='item.attributes.posterImage.large'>
+      <table>
+        <tr>
+          <td><img :src='item.attributes.posterImage.medium'></td>
+          <td>{{ item.attributes.synopsis }}</td>
+        </tr>
+      </table>
     </article>
-
   </div>
 </template>
 
@@ -20,7 +24,3 @@
     computed: mapState(['item'])
   }
 </script>
-
-<style scoped>
-
-</style>

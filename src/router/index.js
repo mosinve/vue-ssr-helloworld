@@ -13,7 +13,7 @@ export function createRouter() {
         component: () => import('../pages/Index.vue')
       },
       {
-        path: ':id',
+        path: '/:id',
         name: 'Item',
         component: () => import('../pages/Item.vue')
       }
