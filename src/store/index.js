@@ -4,8 +4,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// Предположим, что у нас есть универсальный API,
-// который возвращает Promises и опустим детали реализации
 import api from '../api'
 
 export function createStore () {
@@ -16,8 +14,6 @@ export function createStore () {
     },
     actions: {
       async fetchList ({ commit }, { filters } = {}) {
-        // возвращаем Promise через `store.dispatch()`
-        // чтобы мы могли понять когда данные будут загружены
         const { data: { data: items} } = await api.getList({ filters })
         commit('setItems', { items })
       },

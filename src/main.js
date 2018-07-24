@@ -2,17 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import { createRouter } from './router'
 import { createStore } from './store'
-// экспортируем функцию фабрику для создания экземпляров
-// нового приложения, маршрутизатора и хранилища
 
 Vue.mixin({
   beforeMount () {
     const { asyncData } = this.$options
     if (asyncData) {
-      // присваиваем операцию загрузки к Promise
-      // чтобы в компонентах мы могли делать так `this.dataPromise.then(...)`
-      // для выполнения других задач после готовности данных
-      this.dataPromise = asyncData({
+      asyncData({
         store: this.$store,
         route: this.$route
       })
@@ -31,8 +26,10 @@ Vue.mixin({
   }
 })
 
+// экспортируем функцию фабрику для создания экземпляров
+// нового приложения, маршрутизатора и хранилища
 export function createApp () {
-  // Создаём экземпляр маршрутизатора
+  // Создаём экземпляры маршрутизатора и хранилища Vuex
   const router = createRouter()
   const store = createStore()
   const app = new Vue({
